@@ -1,0 +1,9 @@
+[project]
+name = "chakravyuh"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pipecat-gnani[example]==0.6.0",
+    "certifi",
+    "requests",
+]
