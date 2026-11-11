@@ -6,125 +6,130 @@
 <title>Chakravyuh Live</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,400..800&family=Anek+Kannada:wght@400;500;700&family=Anek+Devanagari:wght@400;500;700&family=Anek+Tamil:wght@400;500;700&family=Anek+Telugu:wght@400;500;700&family=Anek+Malayalam:wght@400;500;700&family=Anek+Bangla:wght@400;500;700&family=Anek+Gujarati:wght@400;500;700&family=Anek+Gurmukhi:wght@400;500;700&family=Tiro+Devanagari+Sanskrit&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Anek+Latin:wght@400;500;700&family=Anek+Kannada:wght@400;500;700&family=Anek+Devanagari:wght@400;500;700&family=Anek+Tamil:wght@400;500;700&family=Anek+Telugu:wght@400;500;700&family=Anek+Malayalam:wght@400;500;700&family=Anek+Bangla:wght@400;500;700&family=Anek+Gujarati:wght@400;500;700&family=Anek+Gurmukhi:wght@400;500;700&family=Tiro+Devanagari+Sanskrit&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  /* Built around Vanta NET: its plum and hot pink, with haldi gold kept for what we catch. */
+  /* gsap.com's language: near-black, bright colour blocks, rounded bento cards, chunky type, bouncy motion.
+     Each scam stage owns a colour; orange is always the scammer, green is always what we caught. */
   :root {
-    --night: #23153c;                    /* NET's own background */
-    --glass: rgba(29, 16, 52, .5);
-    --edge: rgba(255, 63, 129, .2);
-    --rule: rgba(246, 238, 249, .12);
-    --chalk: #f6eef9;
-    --mist: #ab9bc8;
-    --pink: #ff3f81;                     /* NET's lines; the caller */
-    --haldi: #ffc23d;                    /* caught identifiers */
+    --ink: #0e100f;
+    --card: #1a1b19;
+    --raise: #242522;
+    --line: #34352f;
+    --cream: #fffce1;
+    --mist: #a8a795;
+    --green: #0ae448;     /* caught */
+    --orange: #ff8709;    /* the scammer */
+    --lilac: #9d95ff;     /* the persona */
+    --blue: #00bae2;
+    --pink: #fe53bb;
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
     --body: "Anek Latin", "Anek Kannada", "Anek Devanagari", "Anek Tamil", "Anek Telugu", "Anek Malayalam", "Anek Bangla", "Anek Gujarati", "Anek Gurmukhi", system-ui, sans-serif;
     --data: "Martian Mono", ui-monospace, monospace;
   }
   * { box-sizing: border-box; margin: 0; }
   html, body { height: 100%; }
   body {
-    background: var(--night); color: var(--chalk);
+    background: var(--ink); color: var(--cream);
     font: 400 16px/1.45 var(--body);
-    display: grid; grid-template-rows: auto 1fr auto; gap: 14px; height: 100vh; padding: 14px;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 12px; height: 100vh; padding: 12px;
   }
-  #net { position: fixed; inset: 0; z-index: -1; }
-  .glass {
-    background: var(--glass); border: 1px solid var(--edge); border-radius: 20px;
-    -webkit-backdrop-filter: blur(5px) saturate(1.3); backdrop-filter: blur(5px) saturate(1.3);
-  }
-  a:focus-visible { outline: 2px solid var(--haldi); outline-offset: 3px; border-radius: 4px; }
+  .card { background: var(--card); border-radius: 26px; }
+  a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 6px; }
 
-  /* header */
-  header { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; padding: 16px 28px; }
-  .brand { display: grid; gap: 4px; }
-  .brand .mark { font: 400 40px/1 "Tiro Devanagari Sanskrit", serif; color: var(--haldi); }
-  .brand .latin { font: 700 11px/1 var(--body); font-stretch: 125%; letter-spacing: .32em; text-transform: uppercase; color: var(--mist); }
-  .line { font-weight: 600; font-size: 17px; }
-  .line small { color: var(--mist); font-size: 14px; font-weight: 400; }
-  .status { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--mist);
-    border: 1px solid var(--rule); border-radius: 999px; padding: 5px 14px 5px 10px; }
-  .status .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--mist); }
-  .status.live { color: var(--chalk); border-color: var(--edge); }
-  .status.live .dot { background: var(--pink); box-shadow: 0 0 10px var(--pink); animation: pulse 1.6s ease-in-out infinite; }
-  .report-link { color: var(--haldi); font-size: 14px; text-underline-offset: 3px; }
-  .counters { margin-left: auto; display: flex; gap: 36px; }
-  .counter { display: grid; gap: 4px; text-align: right; }
-  .counter b { font: 800 38px/.9 var(--body); font-stretch: 125%; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
-  .counter span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
-  .counter.caught b { color: var(--haldi); }
+  /* header: an identity card and three colour blocks */
+  header { display: flex; gap: 12px; }
+  .id { flex: 1; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding: 16px 26px; }
+  .brand { display: grid; gap: 2px; }
+  .brand .mark { font: 400 38px/1 "Tiro Devanagari Sanskrit", serif; }
+  .brand .latin { font: 700 13px/1 var(--display); color: var(--mist); }
+  .line { font: 700 18px var(--display); }
+  .line small { color: var(--mist); font: 400 14px var(--body); }
+  .status { display: flex; align-items: center; gap: 8px; font: 600 14px var(--display); color: var(--mist);
+    background: var(--raise); border-radius: 999px; padding: 7px 16px 7px 12px; }
+  .status .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mist); }
+  .status.live { color: var(--cream); }
+  .status.live .dot { background: var(--green); animation: pulse 1.4s ease-in-out infinite; }
+  .report-link { font: 700 14px var(--display); color: var(--ink); background: var(--green); border-radius: 999px; padding: 7px 16px; text-decoration: none; }
+  .counters { display: flex; gap: 12px; }
+  .counter { display: grid; align-content: space-between; gap: 6px; min-width: 150px; padding: 14px 20px 16px; border-radius: 26px; color: var(--ink); }
+  .counter.time { background: var(--orange); }
+  .counter.caught { background: var(--green); }
+  .counter.fails { background: var(--lilac); }
+  .counter span { font: 700 13px/1.1 var(--display); }
+  .counter b { font: 800 46px/.9 var(--display); font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
 
   /* main */
-  main { display: grid; grid-template-columns: minmax(300px, 5fr) 7fr; gap: 14px; min-height: 0; }
-  .vyuh { padding: 24px 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; overflow: hidden; }
-  .vortex { position: relative; width: 100%; max-width: 420px; aspect-ratio: 1; }
-  .vortex svg { width: 100%; overflow: visible; }
-  .ring { fill: none; stroke: var(--rule); stroke-width: 2.5; transition: stroke .6s; }
-  .ring.reached { stroke: #8b72b8; }
-  .ring.current { stroke: var(--pink); filter: drop-shadow(0 0 6px var(--pink)); }
-  .ring-label { font: 700 10.5px var(--body); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; fill: var(--mist); text-anchor: middle; dominant-baseline: central; transition: fill .6s; }
-  .ring-label.reached { fill: #cdbfe6; }
-  .ring-label.current { fill: var(--pink); }
-  .trail { fill: none; stroke: var(--pink); stroke-width: 1.5; stroke-dasharray: 2 5; opacity: .6; }
-  .caller { fill: var(--pink); }
-  .caller-halo { fill: var(--pink); opacity: .22; }
-  .core { fill: var(--haldi); fill-opacity: 0; stroke: var(--haldi); stroke-width: 2; transition: fill-opacity .6s; }
-  .core-n { font: 800 20px var(--body); font-stretch: 125%; fill: var(--haldi); text-anchor: middle; dominant-baseline: central; }
-  .core.full + .core-n { fill: var(--night); }
+  main { display: grid; grid-template-columns: minmax(300px, 5fr) 7fr; gap: 12px; min-height: 0; }
+  .vyuh { padding: 24px 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+  .vortex { flex: 1 1 0; min-height: 160px; max-width: 100%; aspect-ratio: 1; }  /* shrinks with the card's height */
+  .vortex svg { width: 100%; height: 100%; overflow: visible; }
+  .hook { --c: var(--blue); } .threat { --c: var(--orange); } .isolation { --c: var(--pink); } .payment_ask { --c: var(--lilac); }
+  .ring { fill: none; stroke: var(--c); stroke-width: 8; stroke-linecap: round; opacity: .16; transition: opacity .5s; }
+  .ring.reached { opacity: .45; }
+  .ring.current { opacity: 1; }
+  .ring-label { font: 800 13px var(--display); fill: var(--c); opacity: .45; text-anchor: middle; dominant-baseline: central; transition: opacity .5s;
+    paint-order: stroke; stroke: var(--card); stroke-width: 6px; stroke-linejoin: round; }
+  .ring-label.reached, .ring-label.current { opacity: 1; }
+  .trail { fill: none; stroke: var(--cream); stroke-width: 3; stroke-linecap: round; stroke-dasharray: .1 8; opacity: .55; }
+  .caller { fill: var(--orange); }
+  .caller-halo { fill: var(--orange); opacity: .25; }
+  .core { fill: var(--green); fill-opacity: 0; stroke: var(--green); stroke-width: 4; transition: fill-opacity .5s; }
+  .core-n { font: 800 22px var(--display); fill: var(--green); text-anchor: middle; dominant-baseline: central; }
+  .core.full + .core-n { fill: var(--ink); }
 
-  .timeline { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px 16px; width: 100%; max-width: 420px; }
-  .timeline li { display: grid; gap: 2px; border-top: 2px solid var(--rule); padding-top: 8px; transition: border-color .6s; }
-  .timeline li.reached { border-color: var(--pink); }
-  .timeline span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--mist); }
+  .timeline { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px 12px; width: 100%; max-width: 420px; }
+  .timeline li { display: grid; gap: 4px; }
+  .timeline li::before { content: ""; height: 8px; border-radius: 4px; background: var(--raise); transition: background .5s; }
+  .timeline li.reached::before { background: var(--c); }
+  .timeline span { font: 700 13px var(--display); color: var(--mist); }
   .timeline b { font: 400 14px var(--data); font-variant-numeric: tabular-nums; }
 
-  .transcript { overflow-y: auto; overscroll-behavior: contain; padding: 28px 36px 40px; min-height: 0; }
-  .empty { color: var(--mist); margin-top: 20vh; text-align: center; }
-  .turn { max-width: 62ch; margin-bottom: 22px; }
-  .turn .who { display: flex; gap: 10px; align-items: baseline; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); margin-bottom: 4px; }
-  .turn .who b { font-weight: 700; font-stretch: 125%; }
-  .turn .who time { font: 400 11px var(--data); letter-spacing: 0; }
-  .turn.scammer .who b { color: var(--pink); }
-  .turn.persona { margin-left: 8ch; padding-left: 16px; border-left: 2px solid var(--rule); }
-  .turn.persona .who b { color: var(--chalk); }
+  .transcript { overflow-y: auto; overscroll-behavior: contain; padding: 22px 26px 36px; min-height: 0; }
+  .empty { color: var(--mist); margin-top: 20vh; text-align: center; font: 600 16px var(--display); }
+  .turn { max-width: 62ch; width: fit-content; margin-bottom: 12px; padding: 12px 18px 14px; border-radius: 22px; background: var(--raise); }
+  .turn.scammer { border-top-left-radius: 6px; }
+  .turn.persona { margin-left: 8ch; border-top-right-radius: 6px; background: rgba(157, 149, 255, .13); }
+  .turn .who { display: flex; gap: 10px; align-items: baseline; margin-bottom: 4px; }
+  .turn .who b { font: 800 14px var(--display); }
+  .turn .who time { font: 400 11px var(--data); color: var(--mist); }
+  .turn.scammer .who b { color: var(--orange); }
+  .turn.persona .who b { color: var(--lilac); }
   .turn .text { font-size: 19px; line-height: 1.5; }
-  .turn.scammer .text { color: #e4d9ee; }
   .tag { font-size: 13px; font-style: italic; color: var(--mist); padding: 0 2px; }
   .tag::before { content: "("; } .tag::after { content: ")"; }
   .goal { margin-top: 6px; font: 400 11.5px/1.5 var(--data); color: var(--mist); }
-  .goal::before { content: "goal → "; color: #7f6aa6; }
-  .hits { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-  .hit { font: 600 13px var(--data); color: var(--night); background: var(--haldi); padding: 3px 9px; border-radius: 999px; box-shadow: 0 0 18px rgba(255, 194, 61, .35); }
-  .hit small { font: 700 10px var(--body); letter-spacing: .1em; text-transform: uppercase; margin-right: 6px; }
+  .goal::before { content: "goal → "; color: var(--lilac); }
+  .hits { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .hit { font: 600 13px var(--data); color: var(--ink); background: var(--green); padding: 4px 12px; border-radius: 999px; }
+  .hit small { font: 800 11px var(--display); margin-right: 6px; }
 
-  /* footer: the haul */
-  footer { padding: 14px 28px; display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
-  footer h2 { font: 700 11px var(--body); font-stretch: 125%; letter-spacing: .28em; text-transform: uppercase; color: var(--mist); }
-  .haul { display: flex; gap: 14px; flex-wrap: wrap; flex: 1; min-height: 52px; align-items: center; }
+  /* footer: the haul, as stickers */
+  footer { padding: 14px 26px; display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+  footer h2 { font: 800 24px var(--display); letter-spacing: -.02em; }
+  .haul { display: flex; gap: 12px; flex-wrap: wrap; flex: 1; min-height: 56px; align-items: center; }
   .haul .none { color: var(--mist); font-size: 14px; }
-  .stamp {
-    border: 2px solid var(--haldi); color: var(--haldi); border-radius: 6px; padding: 5px 12px 6px; background: rgba(255, 194, 61, .07);
-    display: grid; gap: 1px; transform: rotate(-2deg);
-  }
-  .stamp:nth-child(even) { transform: rotate(1.5deg); }
-  .stamp small { font: 700 10px var(--body); letter-spacing: .14em; text-transform: uppercase; }
-  .stamp b { font: 600 15px var(--data); }
-  .disclaimer { font-size: 12px; color: var(--mist); }
+  .stamp { background: var(--green); color: var(--ink); border-radius: 18px; padding: 7px 16px 9px; display: grid; gap: 1px; transform: rotate(-3deg); }
+  .stamp:nth-child(even) { transform: rotate(2.5deg); }
+  .stamp small { font: 800 11px var(--display); }
+  .stamp b { font: 600 16px var(--data); }
+  .disclaimer { font: 600 12px var(--display); color: var(--mist); }
 
-  @keyframes pulse { 50% { opacity: .35; } }
+  @keyframes pulse { 50% { opacity: .3; } }
 
   @media (max-width: 860px) {
     body { height: auto; min-height: 100vh; padding: 10px; gap: 10px; }
-    header { padding: 14px 16px; gap: 14px; }
-    .counters { margin-left: 0; width: 100%; justify-content: space-between; gap: 12px; }
-    .counter { text-align: left; }
-    .counter b { font-size: 28px; }
+    header { flex-direction: column; gap: 10px; }
+    .id { padding: 14px 18px; gap: 12px; }
+    .counters { gap: 8px; }
+    .counter { flex: 1; min-width: 0; padding: 12px 14px; border-radius: 20px; }
+    .counter b { font-size: 30px; }
+    .counter span { font-size: 11px; }
     main { grid-template-columns: 1fr; gap: 10px; }
     .vyuh { padding: 20px 16px; }
-    .vortex { max-width: 300px; }
-    .transcript { padding: 20px 16px; overflow: visible; }
+    .vortex { flex: none; width: 100%; max-width: 300px; }
+    .transcript { padding: 18px 14px; overflow: visible; }
     .turn.persona { margin-left: 2ch; }
-    footer { padding: 14px 16px; }
+    footer { padding: 14px 18px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -132,39 +137,39 @@
 </style>
 </head>
 <body>
-<div id="net" aria-hidden="true"></div>
-<header class="glass">
-  <div class="brand"><span class="mark" lang="sa">चक्रव्यूह</span><span class="latin">Chakravyuh</span></div>
-  <div class="line" id="line">No call <small>yet</small></div>
-  <div class="status" id="status" role="status"><span class="dot"></span><span id="status-text">Waiting</span></div>
-  <a class="report-link" id="report-link" target="_blank" hidden>Open report</a>
+<header>
+  <div class="id card">
+    <div class="brand"><span class="mark" lang="sa">चक्रव्यूह</span><span class="latin">Chakravyuh</span></div>
+    <div class="line" id="line">No call <small>yet</small></div>
+    <div class="status" id="status" role="status"><span class="dot"></span><span id="status-text">Waiting</span></div>
+    <a class="report-link" id="report-link" target="_blank" hidden>Open report</a>
+  </div>
   <div class="counters">
-    <div class="counter"><b id="clock">0:00</b><span>scammer time</span></div>
-    <div class="counter caught"><b id="n-caught">0</b><span>identifiers caught</span></div>
-    <div class="counter"><b id="n-fails">0</b><span>payments “failed”</span></div>
+    <div class="counter time"><span>Scammer time</span><b id="clock">0:00</b></div>
+    <div class="counter caught"><span>Identifiers caught</span><b id="n-caught">0</b></div>
+    <div class="counter fails"><span>Payments “failed”</span><b id="n-fails">0</b></div>
   </div>
 </header>
 
 <main>
-  <section class="vyuh glass" aria-label="Scam stage">
+  <section class="vyuh card" aria-label="Scam stage">
     <div class="vortex">
-    <svg id="rings" viewBox="0 0 400 400" role="img" aria-label="The caller's progress through the scam stages"></svg></div>
+      <svg id="rings" viewBox="0 0 400 400" role="img" aria-label="The caller's progress through the scam stages"></svg>
+    </div>
     <ol class="timeline" id="timeline"></ol>
   </section>
-  <section class="transcript glass" id="transcript" aria-live="polite" aria-label="Live transcript">
+  <section class="transcript card" id="transcript" aria-live="polite" aria-label="Live transcript">
     <div id="turns"><p class="empty" id="empty">Waiting for a call.</p></div>
   </section>
 </main>
 
-<footer class="glass">
+<footer class="card">
   <h2>Caught</h2>
   <div class="haul" id="haul"><span class="none">Nothing yet. Identifiers appear here as the caller gives them.</span></div>
   <p class="disclaimer">Simulated scammer · synthetic accounts</p>
 </footer>
 
 <!-- Each library is optional: without it the page still works, just without that motion. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
@@ -196,13 +201,13 @@ const G = !REDUCE && window.gsap;  // falsy: every update is instant
 // Build the vyuh once: each ring is a circle with a gate cut where its label sits.
 const svg = $("rings"), rings = {}, labels = {}, ticks = {};
 for (const s of STAGES) {
-  const ring = el("circle", { cx: C, cy: C, r: s.r, class: "ring" }, true);
+  const ring = el("circle", { cx: C, cy: C, r: s.r, class: `ring ${s.id}` }, true);
   const [x, y] = pt(s);
-  const label = el("text", { x, y, class: "ring-label" }, true);
+  const label = el("text", { x, y, class: `ring-label ${s.id}` }, true);
   label.textContent = s.label;
   svg.append(ring, label);
   rings[s.id] = ring; labels[s.id] = label;
-  const li = el("li"); li.innerHTML = `<span>${s.label}</span><b>—</b>`;
+  const li = el("li", { class: s.id }); li.innerHTML = `<span>${s.label}</span><b>—</b>`;
   $("timeline").append(li); ticks[s.id] = li;
 }
 const trail = el("polyline", { class: "trail", points: "" }, true);
@@ -211,29 +216,21 @@ const coreN = el("text", { x: C, y: C, class: "core-n" }, true);
 coreN.textContent = "0";
 const halo = el("circle", { r: 15, class: "caller-halo" }, true);
 const caller = el("circle", { r: 7, class: "caller" }, true);
-svg.append(trail, core, coreN, halo, caller);
-
-// The net behind everything reaches further the deeper the caller gets.
-const NET_REACH = 20;
-let net = null;
-try {
-  if (window.VANTA && !REDUCE) net = VANTA.NET({ el: "#net", mouseControls: true, touchControls: true, gyroControls: false,
-    color: 0xff3f81, backgroundColor: 0x23153c, points: 10, maxDistance: NET_REACH, spacing: 17 });
-} catch (e) { console.warn("No WebGL, net off", e); }
+svg.append(trail, ...Object.values(labels), core, coreN, halo, caller);  // labels sit above the trail
 
 const lenis = window.Lenis && !REDUCE ? new Lenis(WIDE ? { wrapper: $("transcript"), content: $("turns") } : {}) : null;
 if (lenis && G) { gsap.ticker.add((t) => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
 else if (lenis) requestAnimationFrame(function raf(t) { lenis.raf(t); requestAnimationFrame(raf); });
 
-if (G) gsap.timeline({ defaults: { ease: "power3.out" } })
-  .from("header > *", { y: -12, autoAlpha: 0, stagger: .06, duration: .6 })
+if (G) gsap.timeline({ defaults: { ease: "power3.out", clearProps: "all" } })  // hand styling back to the CSS classes
+  .from([".id", ".counter"], { y: 30, scale: .85, autoAlpha: 0, stagger: .08, duration: .9, ease: "back.out(1.8)" })
   .from(STAGES.map((s) => rings[s.id]), { scale: .55, autoAlpha: 0, svgOrigin: `${C} ${C}`, stagger: .12, duration: 1 }, "<.1")
   .from(Object.values(labels), { autoAlpha: 0, stagger: .12, duration: .6 }, "<.3")
   .from(["#timeline li", "footer"], { y: 10, autoAlpha: 0, stagger: .05, duration: .5 }, "<.2");
 
 function cutGates() {  // gate width follows the label, so it's measured after fonts load
   for (const s of STAGES) {
-    const circ = 2 * Math.PI * s.r, gap = labels[s.id].getComputedTextLength() + 18;
+    const circ = 2 * Math.PI * s.r, gap = labels[s.id].getComputedTextLength() + 30;  // round caps eat into the gap
     s.gap = gap;
     const p = circ * (((s.a % 360) + 360) % 360) / 360;
     rings[s.id].setAttribute("stroke-dasharray", `${circ - gap} ${gap}`);
@@ -255,7 +252,6 @@ function reset(name, line) {
   for (const id in rings) { rings[id].classList.remove("reached", "current"); labels[id].classList.remove("reached", "current"); ticks[id].classList.remove("reached"); ticks[id].querySelector("b").textContent = "—"; }
   trail.setAttribute("points", "");
   place();
-  net?.setOptions({ maxDistance: NET_REACH });
   setCaught(0);
   $("n-fails").textContent = "0";
 }
@@ -285,6 +281,11 @@ function moveCaller(to) {
   state.moves.to(p, { k: 1, duration: 1.6, ease: "power2.inOut", onStart: begin, onUpdate: () => draw(p.k) });
 }
 
+// A colour block jumps when its number changes.
+function bump(id) {
+  if (G) gsap.fromTo($(id).parentElement, { scale: 1.12, rotation: -3 }, { scale: 1, rotation: 0, duration: 1, ease: "elastic.out(1, .35)" });
+}
+
 function setCaught(n) {
   $("n-caught").textContent = coreN.textContent = n;
   core.style.fillOpacity = Math.min(1, n * 0.28);
@@ -298,7 +299,7 @@ function setStatus(text, live) {
 
 function applyReport(rep) {
   setStatus(STATUS[rep.mode] || rep.mode, !state.ended);
-  $("n-fails").textContent = rep.payment_fails;
+  if (+$("n-fails").textContent !== rep.payment_fails) { $("n-fails").textContent = rep.payment_fails; bump("n-fails"); }
   const idx = STAGES.findIndex((s) => s.id === rep.stage);
   STAGES.forEach((s, i) => {
     const t = rep.stage_times[s.id];
@@ -313,7 +314,6 @@ function applyReport(rep) {
     state.stage = rep.stage;
     const s = STAGES[idx];
     moveCaller({ r: s.r, a: s.a + (s.gap / 2 + 14) / s.r * 180 / Math.PI });  // just past the gate
-    net?.setOptions({ maxDistance: NET_REACH + idx * 2 });
   }
   if (rep.identifiers.length !== state.caught) {
     for (const item of rep.identifiers.slice(state.caught)) {
@@ -322,10 +322,11 @@ function applyReport(rep) {
       st.innerHTML = `<small>${TYPES[item.type] || item.type}</small><b>${esc(item.value)}</b>`;
       $("haul").append(st);
       if (G) gsap.fromTo(st, { scale: 1.8, rotation: -14, autoAlpha: 0 },
-        { scale: 1, rotation: state.caught % 2 ? 1.5 : -2, autoAlpha: 1, duration: .55, ease: "back.out(2.4)" });
+        { scale: 1, rotation: state.caught % 2 ? 2.5 : -3, autoAlpha: 1, duration: .7, ease: "elastic.out(1, .45)" });
       state.caught++;
     }
     setCaught(state.caught);
+    bump("n-caught");
     if (G) gsap.fromTo(core, { attr: { r: 36 } }, { attr: { r: 26 }, duration: .9, ease: "elastic.out(1, .4)" });
   }
 }
@@ -339,7 +340,7 @@ function addTurn(ev) {
   if (ev.found.length) t.insertAdjacentHTML("beforeend", `<div class="hits">${ev.found.map((i) =>
     `<span class="hit"><small>${TYPES[i.type] || i.type}</small>${esc(i.value)}</span>`).join("")}</div>`);
   $("turns").append(t);
-  if (G) gsap.from(t, { y: 16, autoAlpha: 0, duration: .5, ease: "power3.out" });
+  if (G) gsap.from(t, { y: 24, scale: .94, transformOrigin: ev.speaker === "scammer" ? "0 0" : "100% 0", autoAlpha: 0, duration: .7, ease: "back.out(1.7)" });
   if (!WIDE) return;
   const box = $("transcript");
   if (lenis) { lenis.resize(); lenis.scrollTo(lenis.limit, { duration: 1.2 }); }
